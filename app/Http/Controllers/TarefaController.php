@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Tarefa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TarefaController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,11 @@ class TarefaController extends Controller
      */
     public function index()
     {
-        //
+        if (Auth::check()) {
+            return view('home');
+        } else {
+            return view('error_404');
+        }
     }
 
     /**
