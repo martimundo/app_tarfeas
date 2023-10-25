@@ -18,7 +18,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
         ->middleware('verified');
 
 //Route::resource('tarefas', 'App\Http\Controllers\TarefaController')->middleware('auth');
-Route::resource('tarefas', TarefaController::class)->middleware('verified');;
+Route::resource('tarefa', TarefaController::class)->middleware('verified');;
 
 Route::get('/mensage-teste', function(){
     return new MensagemMail();

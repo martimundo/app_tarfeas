@@ -21,7 +21,8 @@ class TarefaController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            return view('home');
+            $tarefas = Tarefa::all();
+            return view('tarefa.index', compact('tarefas'));
         } else {
             return view('error_404');
         }
@@ -34,7 +35,7 @@ class TarefaController extends Controller
      */
     public function create()
     {
-        //
+        return view('tarefa.create');
     }
 
     /**
@@ -45,7 +46,14 @@ class TarefaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+
+            'tarefa'=>'required|max:255',
+            'data_limite_conclusao'=>'required'
+        ]);
+        $tarefas = $request->all();
+        Tarefa::create($tarefas);
+        return redirect()->route('tarefa.index');
     }
 
     /**
@@ -56,7 +64,7 @@ class TarefaController extends Controller
      */
     public function show(Tarefa $tarefa)
     {
-        //
+        return view('tarefa.show', compact('tarefa'));
     }
 
     /**
