@@ -31,7 +31,7 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Cadastrar</button>
                         </form>
-                        <div class="mb-3">
+                        <div class="mt-3">
                             <a href="{{ route('tarefa.index') }}" class="btn btn-outline-success">Listar Tarefas</a>
 
                         </div>

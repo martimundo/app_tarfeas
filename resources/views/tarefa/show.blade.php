@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <div>
-                        <a href="{{route('tarefa.index')}}" class="btn btn-secondary btn-sm mt-3">Listar de tarefas</a>
+                        <a href="{{url()->previous()}}" class="btn btn-secondary btn-sm mt-3">Voltar</a>
                     </div>
 
                     

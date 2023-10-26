@@ -40,10 +40,10 @@
                             <a class="nav-link text-white" href="#">Link</a>
                           </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Cadastros</a>
+                            <a class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Tarefas</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="{{route('tarefa.create')}}">Nova Tarefa</a></li>
+                                <li><a class="dropdown-item" href="{{route('tarefa.index')}}">Lista de Tarefas</a></li>
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="#">Separated link</a></li>
