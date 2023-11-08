@@ -20,12 +20,17 @@
                                 <td scope="row">{{ $tarefa->id }}</td>
                                 <td scope="row">{{ $tarefa->tarefa }}</td>
                                 <td scope="row">{{ date('d/m/y', strtotime($tarefa->data_limite_conclusao)) }}</td>
-                                <td colspan="3">
-                                    <a href="{{ route('tarefa.create') }}" class="btn btn-outline-info btn-sm">Nova
-                                        Tarefa</a>
+                                
+                                <td>
                                     <a href="{{ route('tarefa.show', ['tarefa' => $tarefa->id]) }}"
-                                        class="btn btn-outline-warning btn-sm">Detalhes</a>
-                                    <a href=""class="btn btn-outline-danger btn-sm">Excluir</a>
+                                        class="btn btn-outline-info btn-sm">Detalhes</a>
+                                </td>
+                                <td>
+                                    <form id="form_{{$tarefa->id}}" action="{{route('tarefa.destroy',['tarefa'=>$tarefa->id])}}}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <a href="#"class="btn btn-outline-danger btn-sm" onclick="document.getElementById('form_{{$tarefa->id}}').submit()">Excluir</a>
+                                    </form>
                                 </td>
 
                             </tr>

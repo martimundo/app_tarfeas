@@ -23,7 +23,7 @@ class TarefaController extends Controller
      */
     public function index()
     {
-        
+
         if (Auth::check()) {
             $user_id = auth()->user()->id;
             $tarefas = Tarefa::where('user_id', $user_id)->paginate(10);
@@ -51,17 +51,17 @@ class TarefaController extends Controller
      */
     public function store(Request $request)
     {
-        $dados =$request->all();
-        $dados['user_id'] =auth()->user()->id;
+        $dados = $request->all();
+        $dados['user_id'] = auth()->user()->id;
 
         //dd($dados);
 
         $request->validate([
 
-            'tarefa'=>'required|max:255',
-            'data_limite_conclusao'=>'required'
+            'tarefa' => 'required|max:255',
+            'data_limite_conclusao' => 'required'
         ]);
-        
+
         $tarefa = Tarefa::create($dados);
 
         $destinatario = auth()->user()->email;
@@ -89,7 +89,12 @@ class TarefaController extends Controller
      */
     public function edit(Tarefa $tarefa)
     {
-        //
+        $user_id = auth()->user()->id;
+        if ($tarefa->user_id == $user_id) {
+
+            return view('tarefa.edit', compact('tarefa'));
+        }
+        return view('acesso_negado');
     }
 
     /**
@@ -101,7 +106,13 @@ class TarefaController extends Controller
      */
     public function update(Request $request, Tarefa $tarefa)
     {
-        //
+        $user_id = auth()->user()->id;
+        if ($tarefa->user_id == $user_id) {
+
+            $tarefa->update($request->all());
+            return redirect()->route('tarefa.index');
+        }
+        return view('acesso_negado');
     }
 
     /**
@@ -112,6 +123,11 @@ class TarefaController extends Controller
      */
     public function destroy(Tarefa $tarefa)
     {
-        //
+        //dd($tarefa);        
+        if(!$tarefa->user_id == auth()->user()->id){
+            return view('acesso_negado');
+        }
+        $tarefa->delete();
+        return redirect()->route('tarefa.index');
     }
 }
