@@ -16,7 +16,9 @@ Route::get('/user_profile', function(){
     return view('auth.user_profile');
 })->name('user_profile');
 
+Route::get('tarefa/exportar/{extensao}',[App\Http\Controllers\TarefaController::class, 'exportacao'])->name('tarefa.exportar');
 Route::resource('tarefa', TarefaController::class)->middleware('verified');
+
 
 // Route::get('/mensage-teste', function(){
 //     return new MensagemMail();
